@@ -14,9 +14,7 @@ var key = 'AIzaSyD7snD0Pp0v1sadfYoh18WPddamXuMnKwU'
 var originalSearchUrl = 'https://www.googleapis.com/customsearch/v1?searchType=image&cx=' + cx + '&key=' + key + '&q=';
 
 router.get('/', function (req, res, next) {
-    res.render('index', {
-      title: 'Generator-Express MVC'
-    });
+    res.render('index');
 });
 
 
@@ -62,4 +60,24 @@ router.get('/api/imagesearch/', (req, res) => {
       'message' : 'no query param'
     })
   }
+})
+
+
+router.get('/api/latest/imagesearch/', (req, res) => {
+
+  // Set the query to order by when field reverse
+  var query = Search.find({}, null, {sort : {'when' : -1}});
+
+  // select the term and when field from the document
+  query.select({
+    '_id' : 0,
+    'term' : 1,
+    'when' : 1,
+  });
+
+  // Execute the query and return the data as json
+  query.exec((err, data) => {
+    if (err) return next(err)
+    res.json(data)
+  })
 })

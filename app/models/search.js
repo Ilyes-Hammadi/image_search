@@ -8,9 +8,4 @@ var SearchSchema = new Schema({
   when: String
 });
 
-SearchSchema.virtual('date')
-  .get(function(){
-    return this._id.getTimestamp();
-  });
-
 mongoose.model('Search', SearchSchema);
