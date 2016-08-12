@@ -3,3 +3,14 @@ extends layout
 block content
   <h1>Image Search Microservice</h1>
   <h2->Guide</h2>
+  <blockquote>User Stories:
+        <ol>
+            <li>I can get the image URLs, alt text and page urls for a set of images relating to a given search string.</li>
+            <li>I can paginate through the responses by adding a <em>offset</em> parameter to the URL.</li>
+            <li>I can get a list of the most recently submitted search strings.</li>
+        </ol>
+  </blockquote>
+  <h2>Example usage:</h2>
+    <code>http://<span class='hostname'>www</span>/api/imagesearch/?q=funny%20cats</code><br>
+    <code>http://<span class='hostname'></span>/api/imagesearch/?q=funny%20cats&offset=2</code><br>
+    <code>http://<span class='hostname'></span>/api/latest/imagesearch/</code>
